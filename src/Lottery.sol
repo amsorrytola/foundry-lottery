@@ -12,8 +12,8 @@ contract Lottery {
     error Lottery__FeesNotEnough();
     error Lottery__NotOpen();
 
-    //Type Declaration 
-    enum LotteryState{
+    //Type Declaration
+    enum LotteryState {
         OPEN,
         CALCULATING
     }
@@ -21,20 +21,16 @@ contract Lottery {
     //Lotery State Variables
     uint256 private immutable i_entryFees;
     LotteryState private s_LotteryState;
-    
 
-    function enterLottery() public payable{
-        if(msg.value<i_entryFees){
+    function enterLottery() public payable {
+        if (msg.value < i_entryFees) {
             revert Lottery__FeesNotEnough();
         }
 
-        if(s_LotteryState==LotteryState.CALCULATING){
+        if (s_LotteryState == LotteryState.CALCULATING) {
             revert Lottery__NotOpen();
         }
 
         //s_player.push(payable(msg.sender));
-
-
     }
-       
 }
